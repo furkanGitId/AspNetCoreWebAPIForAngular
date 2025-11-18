@@ -1,0 +1,46 @@
+<div class="row mb-4">
+  <div class="col-md-8">
+    <h1 class="mb-0">Students</h1>
+  </div>
+  <div class="col-md-4 text-end">
+    <a routerLink="/students/new" class="btn btn-success">
+      <i class="bi bi-plus-circle"></i> Add Student
+    </a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header bg-primary text-white">
+    <strong>Student List</strong>
+  </div>
+  <div class="card-body p-0">
+    <div *ngIf="students.length > 0">
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of students">
+            <td><strong>{{ s.id }}</strong></td>
+            <td>{{ s.name }}</td>
+            <td>
+              <a [routerLink]="['/students', s.id, 'edit']" class="btn btn-sm btn-primary">
+                Edit
+              </a>
+              <button (click)="remove(s.id)" class="btn btn-sm btn-danger ms-2">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="students.length === 0" class="p-4 text-center text-muted">
+      <p>No students found. <a routerLink="/students/new">Create one now</a></p>
+    </div>
+  </div>
+</div>
